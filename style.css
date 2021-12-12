@@ -1,18 +1,78 @@
+:root {
+    --neon-color: #fffa78;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
     background: black;
+    color: white;
 }
 
 .shelf {
     display: flex;
-    overflow: auto;
-    margin-bottom: 40px;
+    overflow: hidden;
+    align-items: center;
 }
 
-img {
-    width: 600px;
+.shelf img {
     height: 300px;
+    transition-duration: .2s;
+}
+
+.shelf img:hover {
+    border: 2px solid var(--neon-color);
+    height: 310px;
+    cursor: pointer;
+    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
+    z-index: 2;
+}
+
+#imgOnTop {
+    position: fixed;
+    background: RGBA(0,0,0,0.7);
+    padding: 5px 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-duration: 0.5s;
+    display: none;
+    z-index: 3;
+    border: 2px solid var(--neon-color);
+    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
+}
+
+#imgOnTop img {
+    height: 500px;;
+}
+
+#imgOnTop button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+    color: black;
 }
