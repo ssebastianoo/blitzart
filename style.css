@@ -13,16 +13,16 @@ body {
 
 .shelf {
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     align-items: center;
 }
 
-.shelf img {
+.media {
     height: 300px;
     transition-duration: .2s;
 }
 
-.shelf img:hover {
+.media:hover {
     border: 2px solid var(--neon-color);
     height: 310px;
     cursor: pointer;
@@ -45,7 +45,12 @@ body {
 }
 
 #imgOnTop img {
-    height: 500px;;
+    height: 500px;
+}
+
+#imgOnTop iframe {
+    height: 400px;
+    width: 711.1111px;
 }
 
 #imgOnTop button {
