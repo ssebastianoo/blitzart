@@ -118,7 +118,7 @@ medias.forEach((media) => {
 
 
 window.onload = () => {
-    /* for (i=0; i<shelves.children.length; i++) {
+    for (i=0; i<shelves.children.length; i++) {
         if (isOdd(i)) {
             shelves.children[i].scrollLeft = shelves.children[i].scrollWidth - shelves.children[i].clientWidth;
         } else {
@@ -139,5 +139,6 @@ window.onload = () => {
             } else {
                 shelves.children[i].scroll({left: pos[i], behavior: 'smooth'});
             }            
-        } */
+        }
+    }, 100);
 }

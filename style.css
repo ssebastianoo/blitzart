@@ -13,7 +13,7 @@ body {
 
 .shelf {
     display: flex;
-    overflow: auto;
+    overflow: hidden;
     align-items: center;
 }
 
