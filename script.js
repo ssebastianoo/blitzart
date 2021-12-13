@@ -2,7 +2,8 @@ let shelves = document.getElementById('shelves');
 const scrollXSpeed = 2;
 let imgOnTop = document.getElementById('imgOnTop');
 let closeButton = document.getElementById('close');
-let bigImg = document.getElementById('bigImg');
+let artwork = document.getElementById('artwork');
+let element;
 let medias = [
     "https://www.youtube.com/watch?v=2oBGhxFni5U",
     "https://images.unsplash.com/photo-1639147591951-07df749c760b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
@@ -35,26 +36,38 @@ let medias = [
 const lines = 2.8;
 
 function showImgOnTop(url) {
-    bigImg.innerHTML = '';
+    artwork.innerHTML = '';
     let videoID = getVideoID(url);
-
     if (videoID) {
-        console.log('a');
-        const video = document.createElement('iframe');
-        video.src = "https://youtube.com/embed/" + videoID;
-        video.frameBorder = '0';
-        bigImg.appendChild(video);
+        element = document.createElement('iframe');
+        element.src = "https://youtube.com/embed/" + videoID;
+        element.frameBorder = '0';
+        artwork.appendChild(element);
     } else {
-        console.log(url);
-        const img = document.createElement('img');
-        img.src = url;
-        bigImg.appendChild(img);
+        element = document.createElement('img');
+        element.src = url;
+        positionImg();
+        artwork.appendChild(element);
     }
     
     imgOnTop.style.display = 'unset';
     setTimeout(() => {
         imgOnTop.classList.remove('hidden');
     }, 100);
+}
+
+function positionImg() {
+    if (element.height > element.width) {
+        let iHeight = element.height;
+        element.height = window.innerHeight*60/100;
+        imgOnTop.style.width = element.height*element.width/iHeight + 'px';
+    } else {
+        let iWidth = element.width;
+        console.log(element.width*element.height/iWidth);
+        console.log(element.height);
+        element.width = window.innerWidth*60/100;
+        imgOnTop.style.width = element.width + 'px';
+    }
 }
  
 function getVideoID(url) {
@@ -71,7 +84,7 @@ closeButton.addEventListener('click', () => {
     imgOnTop.classList.add('hidden');
     setTimeout(() => {
         imgOnTop.style.display = 'none';
-        bigImg.innerHTML = '';
+        artwork.innerHTML = '';
     }, 500);
 });
 
@@ -141,4 +154,16 @@ window.onload = () => {
             }            
         }
     }, 100);
+
+    setInterval(resizePos, 1000);
 }
+
+function resizePos() {
+    if (element) {
+        if (element.nodeName === "IMG") {
+            positionImg();
+        }
+    }
+}
+
+window.addEventListener('resize', resizePos);

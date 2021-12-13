@@ -44,10 +44,6 @@ body {
     box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
 }
 
-#imgOnTop img {
-    height: 500px;
-}
-
 #imgOnTop iframe {
     height: 400px;
     width: 711.1111px;
@@ -81,3 +77,9 @@ tr:nth-child(even) {
     background-color: #dddddd;
     color: black;
 }
+
+/* @media screen and (max-width: 600px) {
+    #imgOnTop img {
+        height: 400px;
+    }
+} */
