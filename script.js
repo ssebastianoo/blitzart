@@ -5,7 +5,7 @@ let closeButton = document.getElementById('close');
 let artwork = document.getElementById('artwork');
 let element;
 let medias = [
-    "https://www.youtube.com/watch?v=2oBGhxFni5U",
+    "https://www.youtube.com/watch?v=pTn6Ewhb27k",
     "https://images.unsplash.com/photo-1639147591951-07df749c760b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
     "https://images.unsplash.com/photo-1639202293330-5f8437183fd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
     "https://images.unsplash.com/photo-1639182946622-7de9d7efa6b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60",
@@ -43,30 +43,54 @@ function showImgOnTop(url) {
         element.src = "https://youtube.com/embed/" + videoID;
         element.frameBorder = '0';
         artwork.appendChild(element);
-    } else {
+    } else { 
         element = document.createElement('img');
         element.src = url;
         positionImg();
         artwork.appendChild(element);
     }
     
-    imgOnTop.style.display = 'unset';
+    imgOnTop.style.removeProperty('display');
     setTimeout(() => {
         imgOnTop.classList.remove('hidden');
     }, 100);
 }
 
+let size = 80;
+function align(method) {
+    switch (method) {
+        case 'width':
+            let iHeight = element.height;
+            element.width = window.innerWidth*size/100;
+            imgOnTop.style.width = element.height*element.width/iHeight + 'px';
+            break;
+        case 'height':
+            element.height = window.innerHeight*size/100;
+            imgOnTop.style.width = element.width + 'px';
+            break;
+    } 
+}
+
 function positionImg() {
-    if (element.height > element.width) {
-        let iHeight = element.height;
-        element.height = window.innerHeight*60/100;
-        imgOnTop.style.width = element.height*element.width/iHeight + 'px';
+    if (element.width > element.height) {
+        imgOnTop.classList.remove('vertical');
+        imgOnTop.classList.add('horizontal')
     } else {
-        let iWidth = element.width;
-        console.log(element.width*element.height/iWidth);
-        console.log(element.height);
-        element.width = window.innerWidth*60/100;
-        imgOnTop.style.width = element.width + 'px';
+        imgOnTop.classList.remove('horizontal');
+        imgOnTop.classList.add('vertical')
+    }
+    return;
+    if (element.height > element.width) {
+        if (window.innerHeight > window.innerWidth) {
+            align('width');
+        } else {
+            align('height');
+        }
+    } else {
+        align('width');
+        if (element.height >= window.innerHeight) {
+            align('height');
+        }
     }
 }
  
@@ -166,4 +190,4 @@ function resizePos() {
     }
 }
 
-window.addEventListener('resize', resizePos);
+window.addEventListener('resize', resizePos); 

@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: 'helveticaneue';
+    src: url('helveticaneue.ttf');
+}
+
 :root {
     --neon-color: #fffa78;
 }
@@ -9,6 +15,7 @@ html {
 body {
     background: black;
     color: white;
+    font-family: 'helveticaneue';
 }
 
 .shelf {
@@ -30,20 +37,6 @@ body {
     z-index: 2;
 }
 
-#imgOnTop {
-    position: fixed;
-    background: RGBA(0,0,0,0.7);
-    padding: 5px 5px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition-duration: 0.5s;
-    display: none;
-    z-index: 3;
-    border: 2px solid var(--neon-color);
-    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
-}
-
 #imgOnTop iframe {
     height: 400px;
     width: 711.1111px;
@@ -57,29 +50,39 @@ body {
     transition-duration: 0.2s;
 }
 
-.hidden {
-    opacity: 0;
+#imgOnTop {
+    position: fixed;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-duration: .3s;
+    border: 2px solid var(--neon-color);
+    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
+    background-color: RGBA(0, 0, 0, 0.8);
 }
 
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-  
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+.horizontal {width: 80%}
+.vertical {width: 25%}
+
+@media only screen and (max-width: 900px) {
+    .vertical {width: 50%}
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-    color: black;
+#artwork img, #artwork iframe { width: 100%; }
+
+.info {
+    max-height: 100px;
+    overflow: auto;
+    padding: 5px 5px;
 }
 
-/* @media screen and (max-width: 600px) {
-    #imgOnTop img {
-        height: 400px;
-    }
-} */
+.title { font-size: 150%; }
+
+.author, .class { font-size: 120%; }
+
+.hidden { opacity: 0; }
