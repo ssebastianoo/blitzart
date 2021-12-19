@@ -69,7 +69,7 @@ body {
 .horizontal {width: 80%}
 .vertical {width: 25%}
 
-@media only screen and (max-width: 830px) {
+@media only screen and (max-width: 700px) {
     .vertical {width: 50%}
 }
 

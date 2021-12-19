@@ -7,6 +7,9 @@ let element;
 let medias;
 const lines = 2.8;
 
+const fileEl = document.getElementById('file');
+const submit = document.getElementById('submit');
+
 const isOdd = (num) => num % 2;
 
 window.addEventListener('load', async () => {
@@ -62,6 +65,26 @@ window.addEventListener('load', async () => {
         }
     }, 100);
 });
+
+submit.addEventListener('click', () => {
+    console.log('a');   
+    let file = fileEl.files[0];
+    if (file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async () => {
+            await fetch('/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    media: reader.result
+                })
+            })
+        }
+    }
+})
 
 function showImgOnTop(url) {
     artwork.innerHTML = '';

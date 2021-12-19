@@ -1,3 +1,4 @@
+const { MongoClient } = require('mongodb');
 const config = require('./config.json');
 const express = require('express');
 const path = require('path');
@@ -33,12 +34,32 @@ let medias = [
     "https://images.unsplash.com/photo-1639242585400-f7029d3eb17c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
 ]
 
+const uri = `mongodb+srv://${config.db.user}:${config.db.password}@cluster0.wax4g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const client = new MongoClient(uri);
+let database, db;
+
+async function connect() {
+    await client.connect();
+    database = await client.db('stuff');
+    db = await database.collection('blitzart');
+}
+
+connect().catch(console.dir);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
+app.use(express.json());
 
 app.get('/', (req, res) => {
+    if (!db) {
+        return res.send('website is getting ready');
+    };
+    let data = db.find({}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+    });
     res.render('index', medias=medias);
 })
 
@@ -48,6 +69,10 @@ app.get('/getMedias', (req, res) => {
 
 app.get('/add', (req, res) => {
     res.render('add');
+})
+
+app.post('/post', (req, res) => {
+    console.log(req.body);
 })
 
 app.listen(config.port, () => {
