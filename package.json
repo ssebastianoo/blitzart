@@ -1,0 +1,30 @@
+{
+  "name": "blitzart16",
+  "version": "1.0.0",
+  "description": "virtual museum for blitzart 16",
+  "main": "main.js",
+  "scripts": {
+    "test": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssebastianoo/blitzart16.git"
+  },
+  "keywords": [
+    "art",
+    "mesuem",
+    "blitzart",
+    "blitzart16"
+  ],
+  "author": "ssebastianoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ssebastianoo/blitzart16/issues"
+  },
+  "homepage": "https://github.com/ssebastianoo/blitzart16#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongodb": "^4.2.2"
+  }
+}
