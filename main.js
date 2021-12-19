@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.use(express.json());
+app.use(express.json({extended: false, limit: '2048mb'}));
 
 app.get('/', (req, res) => {
     if (!db) {
@@ -58,9 +58,8 @@ app.get('/', (req, res) => {
     };
     let data = db.find({}).toArray(function(err, result) {
         if (err) throw err;
-        console.log(result);
+        res.render('index', medias=result.map(media => media.base64));
     });
-    res.render('index', medias=medias);
 })
 
 app.get('/getMedias', (req, res) => {
@@ -71,8 +70,8 @@ app.get('/add', (req, res) => {
     res.render('add');
 })
 
-app.post('/post', (req, res) => {
-    console.log(req.body);
+app.post('/add', (req, res) => {
+    db.insertOne({base64: req.body.base64.toString()});
 })
 
 app.listen(config.port, () => {
