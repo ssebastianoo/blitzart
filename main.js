@@ -42,6 +42,7 @@ async function connect() {
     await client.connect();
     database = await client.db('stuff');
     db = await database.collection('blitzart');
+    console.log('connected to database');
 }
 
 connect().catch(console.dir);
@@ -50,20 +51,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.use(express.json({extended: false, limit: '2048mb'}));
+app.use(express.json({extended: true, limit: '2048mb'}));
 
 app.get('/', (req, res) => {
     if (!db) {
         return res.send('website is getting ready');
     };
-    let data = db.find({}).toArray(function(err, result) {
-        if (err) throw err;
-        res.render('index', medias=result.map(media => media.base64));
-    });
+    res.render('index');
 })
 
 app.get('/getMedias', (req, res) => {
-    res.send(medias);
+    if (!db) {
+        return res.send('website is getting ready');
+    };
+    db.find({}).toArray(function(err, result) {
+        if (err) throw err;
+        res.send(result.map(media => media.base64));
+    });
 });
 
 app.get('/add', (req, res) => {
@@ -72,7 +76,12 @@ app.get('/add', (req, res) => {
 
 app.post('/add', (req, res) => {
     db.insertOne({base64: req.body.base64.toString()});
+    res.send('ok');
 })
+
+app.post('/fileTest', (req, res) => {
+    console.log(req.body);
+});
 
 app.listen(config.port, () => {
     console.log('-> http://localhost:' + config.port);

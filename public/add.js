@@ -1,21 +1,26 @@
 const fileEl = document.getElementById('file');
 const submit = document.getElementById('submit');
 
-submit.addEventListener('click', () => {
+submit.addEventListener('click', async () => {
     let file = fileEl.files[0];
     if (file) {
-        let reader = new FileReader();
+        /* let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = async () => {
-            await fetch('/add', {
+            const req = await fetch('/fileTest', {
                 method: 'POST',
+                files: [file],
                 headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    base64: reader.result
-                })
+                    'Content-Type': 'multipart/form-data',
+                }
             })
-        }
+            console.log(req.status)
+        } */
+        let formData = new FormData();
+        formData.append('file', file, file.name);
+        await fetch('/fileTest', {
+            method: 'POST',
+            body: formData,
+        });
     }
 })
