@@ -4,23 +4,18 @@ const submit = document.getElementById('submit');
 submit.addEventListener('click', async () => {
     let file = fileEl.files[0];
     if (file) {
-        /* let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = async () => {
-            const req = await fetch('/fileTest', {
-                method: 'POST',
-                files: [file],
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            })
-            console.log(req.status)
-        } */
         let formData = new FormData();
-        formData.append('file', file, file.name);
-        await fetch('/fileTest', {
+        formData.append('media', file, file.name);
+        console.log(formData.entries());
+        let res = await fetch('/add', {
             method: 'POST',
             body: formData,
         });
+        if (res.status === 200) {
+            alert('added file');
+            fileEl.value = null;
+        } else {
+            alert('there was an error')
+        }
     }
 })

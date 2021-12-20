@@ -5,8 +5,8 @@ let closeButton = document.getElementById('close');
 let artwork = document.getElementById('artwork');
 let element;
 let medias;
-const lines = 2.8;
-
+const lines = 2;
+    
 const isOdd = (num) => num % 2;
 
 window.addEventListener('load', async () => {
