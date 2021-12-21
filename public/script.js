@@ -5,7 +5,7 @@ let closeButton = document.getElementById('close');
 let artwork = document.getElementById('artwork');
 let element;
 let medias;
-const lines = 2;
+const lines = 2.8;
     
 const isOdd = (num) => num % 2;
 
@@ -25,8 +25,9 @@ window.addEventListener('load', async () => {
         element.src = media;
         element.classList.add('media');
     
-        element.addEventListener('click', () => {
-            showImgOnTop(media);
+        element.addEventListener('click', (e) => {
+            // showImgOnTop(media);
+            location.href = "/media/" + e.target.src.split('/').pop().split('.')[0];
         });
     
         imgNumber++;
@@ -63,7 +64,7 @@ window.addEventListener('load', async () => {
     }, 100);
 });
 
-function showImgOnTop(url) {
+/* function showImgOnTop(url) {
     artwork.innerHTML = '';
     let videoID = getVideoID(url);
     if (videoID) {
@@ -82,7 +83,7 @@ function showImgOnTop(url) {
     setTimeout(() => {
         imgOnTop.classList.remove('hidden');
     }, 100);
-}
+} */
 
 let size = 80;
 function align(method) {

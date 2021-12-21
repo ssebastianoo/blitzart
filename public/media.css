@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'helveticaneue';
+    src: url('helveticaneue.ttf');
+}
+
+:root {
+    --border: #F05454;
+}
+
+body {
+    background: #222831;
+    color: #DDDDDD;
+    font-family: 'helveticaneue';
+}
+
+.container {
+    text-align: center;
+}
+
+img {
+    width: 80%;
+    border: 3px solid var(--border);
+    box-shadow: 0 0 2rem var(--border), 0 0 0.8rem var(--border), 0 0 2.8rem var(--border), inset 0 0 1.3rem var(--border);
+    border-radius: 12px;
+}
+
+.info {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.add {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.add input {
+    margin-top: 20px;
+    padding: 7px 7px;
+    border: none;
+    outline: none;
+    background: #30475E;
+    color: #DDDDDD;
+    border-radius: 5px;
+    font-size: 150%;
+}
+
+.submit {
+    cursor: pointer;
+}

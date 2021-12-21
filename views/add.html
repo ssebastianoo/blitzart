@@ -2,10 +2,19 @@
 <html>
     <head>
         <title>Blitzart 16</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="media.css">
     </head>
     <body>
-        <input type="file" id="file">
-        <input type="submit" id="submit">
+        <div class="add">
+            <input type="text" id="title" name="title" placeholder="titolo"><br>
+            <input type="text" id="description" name="description" placeholder="descrizione"><br>
+            <input type="text" id="author" name="author" placeholder="autore"><br>
+            <input type="text" id="class" name="class" placeholder="classe"><br>
+            <input type="file" id="file"><br>
+            <input type="submit" id="submit" value="invia" class="submit">
+        </div>
         <script src="add.js"></script>
     </body>
 </html>
