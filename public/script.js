@@ -1,4 +1,5 @@
 let shelves = document.getElementById('shelves');
+let img = document.getElementById('img');
 const scrollXSpeed = 2;
 let element, medias;
 const lines = 2.8;
@@ -6,6 +7,14 @@ const lines = 2.8;
 const isOdd = (num) => num % 2;
 
 window.addEventListener('load', async () => {
+    if (img) {
+        if (img.width >= img.height) {
+            img.classList.add('horizontal');
+        } else {
+            img.classList.add('vertical');
+        }
+    }
+
     let res = await fetch('/getMedias');
     let medias = await res.json();
     let imgNumber = 0;

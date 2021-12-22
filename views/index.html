@@ -9,13 +9,15 @@
     <body>
         <div class="container">
             <% if (media) { %>
-                <div class="info">
-                    <h1><%= media.title %></h1>
-                    <p><%= media.description %></p>
-                    <p><%= media.author %></p>
-                    <p><%= media.class %></p>
-                </div>     
-                <img src="<%= media.url %>" id="img">           
+                <div class="top-media">
+                    <div class="info">
+                        <h1><%= media.title %></h1>
+                        <p><%= media.description %></p>
+                        <p><%= media.author %></p>
+                        <p><%= media.class %></p>
+                    </div>
+                    <img src="<%= media.url %>" id="img">     
+                </div>      
             <% } %>
             <div id="media"></div>
             <div id="shelves"></div>

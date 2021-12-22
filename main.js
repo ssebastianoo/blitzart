@@ -69,7 +69,7 @@ app.post('/add', (req, res) => {
     const ext = req.files.media.name.split('.').pop();
     req.files.media.mv(path.join(__dirname, 'public/medias', `${id}.${ext}`), (err) => {if (err) throw err});
     db.run("INSERT INTO medias (id, author, title, description, class) VALUES (?, ?, ?, ?, ?)", [id, req.body.author, req.body.title, req.body.description, req.body.class], (err) => {if (err) throw err});
-    res.redirect('/media/' + id);
+    res.redirect('/?media=' + id);
 });
 
 app.listen(config.port, () => {

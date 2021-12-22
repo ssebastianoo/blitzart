@@ -3,10 +3,6 @@
     src: url('helveticaneue.ttf');
 }
 
-:root {
-    --border: #F05454;
-}
-
 body {
     background: #222831;
     color: #DDDDDD;
@@ -40,18 +36,4 @@ body {
 
 .submit {
     cursor: pointer;
-}
-
-img {
-    border: 3px solid var(--border);
-    box-shadow: 0 0 2rem var(--border), 0 0 0.8rem var(--border), 0 0 2.8rem var(--border), inset 0 0 1.3rem var(--border);
-    border-radius: 12px;
-}
-
-.horizontal {
-    width: 70%;
-}
-
-.vertical {
-    width: 30%;
 }
