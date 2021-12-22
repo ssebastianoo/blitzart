@@ -8,13 +8,15 @@
     </head>
     <body>
         <div class="add">
-            <input type="text" id="title" name="title" placeholder="titolo"><br>
-            <input type="text" id="description" name="description" placeholder="descrizione"><br>
-            <input type="text" id="author" name="author" placeholder="autore"><br>
-            <input type="text" id="class" name="class" placeholder="classe"><br>
-            <input type="file" id="file"><br>
-            <input type="submit" id="submit" value="invia" class="submit">
+            <form action="/add" method="post" enctype='multipart/form-data'>
+                <input type="text" id="title" name="title" placeholder="titolo" autocomplete="off"><br>
+                <input type="text" id="description" name="description" placeholder="descrizione" autocomplete="off"><br>
+                <input type="text" id="author" name="author" placeholder="autore" autocomplete="off"><br>
+                <input type="text" id="class" name="class" placeholder="classe"><br>
+                <input type="file" id="file" name="media"><br>
+                <input type="submit" id="submit" value="invia" class="submit">
+            </form>
         </div>
-        <script src="add.js"></script>
+        <!-- <script src="add.js"></script> -->
     </body>
 </html>

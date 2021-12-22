@@ -8,17 +8,14 @@
     </head>
     <body>
         <div class="container">
-            <% if (error) { %>
-                <h1>media not found</h1>
-            <% } else { %>
-                <div class="info">
-                    <h1><%= media.title %></h1>
-                    <p><%= media.description %></p>
-                    <p><%= media.author %></p>
-                    <p><%= media.class %></p>
-                </div>     
-                <img src="<%= media.url %>">           
-            <% } %>
+            <div class="info">
+                <h1><%= media.title %></h1>
+                <p><%= media.description %></p>
+                <p><%= media.author %></p>
+                <p><%= media.class %></p>
+            </div>     
+            <img src="<%= media.url %>" id="img">           
         </div>
+        <script src="../media.js"></script>
     </body>
 </html>

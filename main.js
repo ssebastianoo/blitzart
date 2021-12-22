@@ -21,7 +21,20 @@ if (!fs.existsSync(path.join(__dirname, 'public/medias'))) {
 }
 
 app.get('/', (req, res) => {
-    res.render('index');
+    if (req.query.media) {
+        const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === req.query.media)[0];
+        db.get("SELECT * FROM medias WHERE id=?", [req.query.media], (err, row) => {
+            if (err) throw err;
+            if (!media || !row) {
+                res.status(404).send('media not found')
+            } else {
+                row.url = path.join('medias', media);
+                res.render('index', {media: row});
+            }
+        });
+    } else {
+        res.render('index', {media: null});
+    }
 })
 
 app.get('/getMedias', (req, res) => {
@@ -35,10 +48,10 @@ app.get('/media/:mediaID', (req, res) => {
     db.get("SELECT * FROM medias WHERE id=?", [mediaID], (err, row) => {
         if (err) throw err;
         if (!media || !row) {
-            res.status(404).render('media', {error: true});
+            res.status(404).send('media not found')
         } else {
             row.url = path.join('../medias', media);
-            res.render('media', {error: false, media: row});
+            res.send(row);
         }
     });
 });
@@ -48,15 +61,15 @@ app.get('/add', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
+    console.log(req.body)
     if ([req.files.media, req.body.title, req.body.description, req.body.author, req.body.class].includes(undefined)) {
-        console.log('bruh');
         return res.status(400).send('missing parameters');
     }
     const id = Date.now();
     const ext = req.files.media.name.split('.').pop();
     req.files.media.mv(path.join(__dirname, 'public/medias', `${id}.${ext}`), (err) => {if (err) throw err});
     db.run("INSERT INTO medias (id, author, title, description, class) VALUES (?, ?, ?, ?, ?)", [id, req.body.author, req.body.title, req.body.description, req.body.class], (err) => {if (err) throw err});
-    res.send({message: 'ok', 'id': id});
+    res.redirect('/media/' + id);
 });
 
 app.listen(config.port, () => {

@@ -17,13 +17,6 @@ body {
     text-align: center;
 }
 
-img {
-    width: 80%;
-    border: 3px solid var(--border);
-    box-shadow: 0 0 2rem var(--border), 0 0 0.8rem var(--border), 0 0 2.8rem var(--border), inset 0 0 1.3rem var(--border);
-    border-radius: 12px;
-}
-
 .info {
     margin-top: 30px;
     margin-bottom: 40px;
@@ -47,4 +40,18 @@ img {
 
 .submit {
     cursor: pointer;
+}
+
+img {
+    border: 3px solid var(--border);
+    box-shadow: 0 0 2rem var(--border), 0 0 0.8rem var(--border), 0 0 2.8rem var(--border), inset 0 0 1.3rem var(--border);
+    border-radius: 12px;
+}
+
+.horizontal {
+    width: 70%;
+}
+
+.vertical {
+    width: 30%;
 }
