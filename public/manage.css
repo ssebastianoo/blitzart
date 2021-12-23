@@ -29,6 +29,7 @@ body {
 
 .submit {
     cursor: pointer;
+    transition-duration: .3s;
 }
 
 .media {
@@ -52,7 +53,6 @@ body {
 
 .info input[type="submit"] {
     background: #30475E;
-    cursor: pointer;
     float: left;
     margin-top: 10px;
     border-radius: 5px;
@@ -65,7 +65,7 @@ body {
     margin-left: 10px;
 }
 
-.info input[type="submit"]:hover {
+input[type="submit"]:hover {
     background: white;
     color: black;
 }

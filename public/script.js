@@ -76,8 +76,10 @@ window.addEventListener('load', async () => {
             pos[i] += shelves.children[i].children.length/scrollXSpeed;
 
             if (isOdd(i)) {
+                console.log('a')
                 shelves.children[i].scroll({left: shelves.children[i].scrollWidth-shelves.children[i].clientWidth-pos[i], behavior: 'smooth'});
             } else {
+                console.log('a')
                 shelves.children[i].scroll({left: pos[i], behavior: 'smooth'});
             }            
         }
