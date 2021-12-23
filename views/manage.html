@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blitzart 16</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="manage.css">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Blitzart 16</h1>
+        <div class="add">
+            <form action="/add" method="post" enctype='multipart/form-data'>
+                <input type="text" id="title" name="title" placeholder="titolo" autocomplete="off" required><br>
+                <input type="text" id="description" name="description" placeholder="descrizione" autocomplete="off" required><br>
+                <input type="text" id="author" name="author" placeholder="autore" autocomplete="off" required><br>
+                <input type="text" id="class" name="class" placeholder="classe" required><br>
+                <input type="file" id="file" name="media" required><br>
+                <input type="submit" id="submit" value="invia" class="submit">
+            </form>
+        </div>
+        <hr>
+        <div class="medias">
+            <% medias.forEach(media => { %>
+                <div class="media">
+                    <a href="/?media=<%= media.id %>">
+                        <img src="<%= media.url %>" alt="media">
+                    </a>
+                    <div class="info">
+                        <form action="/edit/<%= media.id %>" method="post" enctype='multipart/form-data'>
+                            <input type="text" name="title" value="<%= media.title %>" placeholder="titolo" required><br>
+                            <input type="text" name="description" value="<%= media.description %>" placeholder="descrizione" required><br>
+                            <input type="text" name="author" value="<%= media.author %>" placeholder="autore" required><br>
+                            <input type="text" name="class" value="<%= media.class %>" placeholder="classe" required><br>
+                            <input type="submit" value="modifica">
+                        </form>
+                        <form action="/delete/<%= media.id %>">
+                            <input type="submit" value="elimina">
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </body>
+</html>

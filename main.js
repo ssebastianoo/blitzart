@@ -56,12 +56,18 @@ app.get('/media/:mediaID', (req, res) => {
     });
 });
 
-app.get('/add', (req, res) => {
-    res.render('add');
+app.get('/manage', (req, res) => {
+    db.all("SELECT * FROM medias", (err, rows) => {
+        if (err) throw err;
+        rows.forEach(row => {
+            const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === row.id.toString())[0];
+            row.url = path.join('medias', media);
+        });
+        res.render('manage', {medias: rows});
+    });
 });
 
 app.post('/add', (req, res) => {
-    console.log(req.body)
     if ([req.files.media, req.body.title, req.body.description, req.body.author, req.body.class].includes(undefined)) {
         return res.status(400).send('missing parameters');
     }
@@ -70,6 +76,24 @@ app.post('/add', (req, res) => {
     req.files.media.mv(path.join(__dirname, 'public/medias', `${id}.${ext}`), (err) => {if (err) throw err});
     db.run("INSERT INTO medias (id, author, title, description, class) VALUES (?, ?, ?, ?, ?)", [id, req.body.author, req.body.title, req.body.description, req.body.class], (err) => {if (err) throw err});
     res.redirect('/?media=' + id);
+});
+
+app.post('/edit/:id', (req, res) => {
+    const id = req.params.id;
+    if ([req.body.title, req.body.description, req.body.author, req.body.class].includes(undefined)) {
+        console.log('----')
+        console.log([req.body.title, req.body.description, req.body.author, req.body.class])
+        console.log(req.body);
+        return res.status(400).send('missing parameters');
+    }
+    db.run("UPDATE medias SET title=?, description=?, author=?, class=? WHERE id=?", [req.body.title, req.body.description, req.body.author, req.body.class, id], (err) => {if (err) throw err});
+    res.redirect('/manage');
+});
+
+app.get('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    db.run("DELETE FROM medias WHERE id=?", [id], (err) => {if (err) throw err});
+    res.redirect('/manage');
 });
 
 app.listen(config.port, () => {

@@ -1,0 +1,80 @@
+body {
+    background: #222831;
+    color: #DDDDDD;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 120%;
+    text-align: center;
+}
+
+.info {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.add {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.add input {
+    margin-top: 20px;
+    padding: 7px 7px;
+    border: none;
+    outline: none;
+    background: #30475E;
+    color: #DDDDDD;
+    border-radius: 5px;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.submit {
+    cursor: pointer;
+}
+
+.media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.info {
+    margin-left: 20px;
+}
+
+.info input {
+    color: unset;
+    font-family: unset;
+    background: none;
+    border: none;
+    font-size: 130%;
+}
+
+.info input[type="submit"] {
+    background: #30475E;
+    cursor: pointer;
+    float: left;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 5px 5px;
+    transition-duration: .3s;
+}
+
+.info input[type="submit"][value="elimina"] {
+    background: #C1272D;
+    margin-left: 10px;
+}
+
+.info input[type="submit"]:hover {
+    background: white;
+    color: black;
+}
+
+img {
+    width: 200px;
+}
+
+hr {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
