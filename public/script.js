@@ -3,16 +3,32 @@ let img = document.getElementById('img');
 const scrollXSpeed = 2;
 let element, medias;
 const lines = 2.8;
+let header = document.querySelector('.header');
+let container = document.querySelector('.container');
+let arrow = document.querySelector('.arrow');
 
 const isOdd = (num) => num % 2;
 
+function setHeight() {
+    header.style.height = window.innerHeight + 'px';
+    container.style.height = window.innerHeight + 'px';
+}
+
+function nextSection() {
+    document.documentElement.scrollTop = header.style.height.slice(0,-2);
+}
+
+window.addEventListener('resize', setHeight)
 window.addEventListener('load', async () => {
+    setHeight();
+
     if (img) {
         if (img.width >= img.height) {
             img.classList.add('horizontal');
         } else {
             img.classList.add('vertical');
         }
+        nextSection();
     }
 
     let res = await fetch('/getMedias');
@@ -77,3 +93,5 @@ function getVideoID(url) {
     }
     return null;
 }
+
+arrow.addEventListener('click', nextSection)

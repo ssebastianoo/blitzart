@@ -1,10 +1,6 @@
-@font-face {
-    font-family: 'helveticaneue';
-    src: url('helveticaneue.ttf');
-}
-
 :root {
     --neon-color: #fffa78;
+    --background: #222526;
 }
 
 html {
@@ -12,9 +8,34 @@ html {
 }
 
 body {
-    background: black;
+    background: var(--background);
     color: white;
-    font-family: 'helveticaneue';
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.header {
+    text-align: center;
+    font-size: 120%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 3%;
+}
+
+.header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.header img {
+    width: 70%;
+}
+
+.header .arrow {
+    display: block;
+    margin-top: 1.5%;
+    text-align: center;
+    font-size: 400%;
+    cursor: pointer;
 }
 
 .shelf {
@@ -54,4 +75,8 @@ body {
 
 .vertical {
     width: 30%;
+}
+
+.container {
+    display: grid;
 }
