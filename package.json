@@ -4,7 +4,8 @@
   "description": "virtual museum for blitzart 16",
   "main": "main.js",
   "scripts": {
-    "test": "nodemon"
+    "test": "nodemon",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
