@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+        <link rel="icon" href="https://scaling.spaggiari.eu/VEIA0001/favicon/7425.png&rs=%2FtccTw2MgxYfdxRYmYOB6HjkoZcUOGTiYi6QRxuVV5sOGTp63rmnr%2BRTYVh7%2BFO%2FGwXtspJHA9p4BXfBXCcE%2BNfMTv1f63V8Ma7anOoEpmr1vY686jQADlCXWoD41fhLPKDeb5KzEXlN3xj5VLED2HK76ruGkCrzhAMWUaH%2BXdg%3D">
         <script src="https://kit.fontawesome.com/2cd6389f66.js" crossorigin="anonymous"></script> 
     </head>
     <body>
@@ -15,19 +16,18 @@
             <img src="https://scaling.spaggiari.eu/VEIA0001/thumbnail/7769.png&rs=%2FtccTw2MgxYfdxRYmYOB6Pk9jQH5POS%2FquVc8aOi3ns2htM1BhF%2Fr5nAtRVDWvfTyMAZSK1CdbWaDHnglQjglAuFwI5cB%2FVmg%2FuX4At01ifvHVhzR520%2FYme%2BqShUDP%2B9Qj7hNmcQs3PUZ%2B9YD5vdA%3D%3D" alt="codici (di)versi">
             <i class="fas fa-chevron-down arrow"></i>
         </div>
-        <div class="container">
-            <% if (media) { %>
-                <div class="top-media">
-                    <div class="info">
-                        <h1><%= media.title %></h1>
-                        <p><%= media.description %></p>
-                        <p><%= media.author %></p>
-                        <p><%= media.class %></p>
-                    </div>
-                    <img src="<%= media.url %>" id="img">     
+        <% if (media) { %>
+            <div class="top-media">
+                <div class="info">
+                    <h1><%= media.title %></h1>
+                    <p><%= media.description %></p>
+                    <p><%= media.author %></p>
+                    <p><%= media.class %></p>
                 </div>
-            <% } %>
-            <div id="media"></div>
+                <img src="<%= media.url %>" id="img">     
+            </div>
+        <% } %>
+        <div class="container">
             <div id="shelves"></div>
         </div>
         <script src="script.js"></script>

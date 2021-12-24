@@ -9,19 +9,11 @@ let arrow = document.querySelector('.arrow');
 
 const isOdd = (num) => num % 2;
 
-function setHeight() {
-    header.style.height = window.innerHeight + 'px';
-    container.style.height = window.innerHeight + 'px';
-}
-
 function nextSection() {
-    document.documentElement.scrollTop = header.style.height.slice(0,-2);
+    document.documentElement.scrollTop = header.clientHeight*(Math.floor(document.documentElement.scrollTop/header.clientHeight) + 1);
 }
 
-window.addEventListener('resize', setHeight)
 window.addEventListener('load', async () => {
-    setHeight();
-
     if (img) {
         if (img.width >= img.height) {
             img.classList.add('horizontal');
@@ -76,10 +68,8 @@ window.addEventListener('load', async () => {
             pos[i] += shelves.children[i].children.length/scrollXSpeed;
 
             if (isOdd(i)) {
-                console.log('a')
                 shelves.children[i].scroll({left: shelves.children[i].scrollWidth-shelves.children[i].clientWidth-pos[i], behavior: 'smooth'});
             } else {
-                console.log('a')
                 shelves.children[i].scroll({left: pos[i], behavior: 'smooth'});
             }            
         }
