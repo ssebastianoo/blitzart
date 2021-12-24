@@ -4,6 +4,7 @@ const config = require('./config.json');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { prototype } = require('express-fileupload/lib/uploadtimer');
 const app = express();
 
 app.use(express.json({extended: true, limit: '2048mb'}));
@@ -96,6 +97,7 @@ app.get('/delete/:id', (req, res) => {
     res.redirect('/manage');
 });
 
-app.listen(config.port, () => {
-    console.log('-> http://localhost:' + config.port);
+const port = process.env.PORT || config.port;
+app.listen(port, () => {
+    console.log('-> http://localhost:' + port);
 });
