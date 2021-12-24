@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Blitzart 16</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../media.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="info">
+                <h1><%= media.title %></h1>
+                <p><%= media.description %></p>
+                <p><%= media.author %></p>
+                <p><%= media.class %></p>
+            </div>     
+            <img src="<%= media.url %>" id="img">           
+        </div>
+        <script src="../media.js"></script>
+    </body>
+</html>
