@@ -1,5 +1,5 @@
 let shelves = document.getElementById('shelves');
-let img = document.getElementById('img');
+let topMedia = document.getElementById('topMedia');
 const scrollXSpeed = 2;
 let element, medias;
 const lines = 2.8;
@@ -14,11 +14,13 @@ function nextSection() {
 }
 
 window.addEventListener('load', async () => {
-    if (img) {
-        if (img.width >= img.height) {
-            img.classList.add('horizontal');
+    if (topMedia) {
+        console.log(topMedia.clientHeight)
+        console.log(topMedia.clientWidth)
+        if (topMedia.clientWidth >= topMedia.clientHeight) {
+            topMedia.classList.add('horizontal');
         } else {
-            img.classList.add('vertical');
+            topMedia.classList.add('vertical');
         }
         nextSection();
     }
@@ -30,11 +32,14 @@ window.addEventListener('load', async () => {
     shelfDiv.classList.add('shelf');
     shelves.appendChild(shelfDiv);
     medias.forEach((media) => {
-        let videoID = getVideoID(media);
-        if (videoID) {
-            media = `https://img.youtube.com/vi/${videoID}/hqdefault.jpg`;
+        let ext = media.split('.').pop().toLowerCase();
+        let element;
+        if (["mp4", "mov"].includes(ext)) {
+            element = document.createElement('video');
+            element.controls = false;
+        } else if (["jpg", "jpeg", "png", "gif"].includes(ext)) {
+            element = document.createElement('img');
         }
-        let element = document.createElement('img');
         element.src = media;
         element.classList.add('media');
     
@@ -75,15 +80,5 @@ window.addEventListener('load', async () => {
         }
     }, 100);
 });
-
-function getVideoID(url) {
-    var p = /^(?:https?:\/\/)?(?:m\.|www\.|img\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|vi\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-    if (url.match(p)) {
-        let re = /(https?:\/\/)?((www\.)?(youtube(-nocookie)?|youtube.googleapis)\.com.*(v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
-        let id = url.match(re)[7];
-        return id;
-    }
-    return null;
-}
 
 arrow.addEventListener('click', nextSection)

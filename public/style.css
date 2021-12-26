@@ -41,24 +41,13 @@ body {
     transition: width 0.5s;
 }
 
-.header .arrow {
+.arrow {
     display: block;
     margin-top: 1.5%;
     text-align: center;
     font-size: 400%;
     cursor: pointer;
     width: 100%;
-}
-
-@media (max-width: 900px) {
-    .header {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .header img {
-        width: 90%;
-    }
 }
 
 .top-media {
@@ -75,11 +64,11 @@ body {
 }
 
 .horizontal {
-    width: 60%;
+    width: 50%;
 }
 
 .vertical {
-    width: 30%;
+    width: 20%;
 }
 
 .container {
@@ -109,10 +98,29 @@ body {
     z-index: 2;
 }
 
-#img {
+#topMedia {
     margin-top: 20px;
     margin-bottom: 60px;
     border: 3px solid var(--neon-color);
     box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
     border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+    .header {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .header img {
+        width: 90%;
+    }
+
+    .horizontal {
+        width: 85%;
+    }
+    
+    .vertical {
+        width: 60%;
+    }
 }

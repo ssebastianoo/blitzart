@@ -24,7 +24,15 @@
                     <p><%= media.author %></p>
                     <p><%= media.class %></p>
                 </div>
-                <img src="<%= media.url %>" id="img">     
+                <% if (["mp4", "mov"].includes(media.ext)) { %>
+                    <video id="topMedia" controls>
+                        <source src="<%= media.url %>" type="video/<%= media.ext %>">
+                    </video>
+                <% } else if (["jpg", "png", "jpeg", "gif"].includes(media.ext)) {%>
+                    <img src="<%= media.url %>" id="topMedia">     
+                <% } else { %>
+                    <p><em>formato non supportato</em></p>
+                <% } %>
             </div>
         <% } %>
         <div class="container">

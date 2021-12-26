@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
                 res.status(404).send('media not found')
             } else {
                 row.url = path.join('medias', media);
+                row.ext = media.split('.').pop().toLowerCase();
                 res.render('index', {media: row});
             }
         });
@@ -52,6 +53,7 @@ app.get('/media/:mediaID', (req, res) => {
             res.status(404).send('media not found')
         } else {
             row.url = path.join('../medias', media);
+            row.ext  = media.split('.').pop();
             res.send(row);
         }
     });
