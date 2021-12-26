@@ -2,7 +2,7 @@ let shelves = document.getElementById('shelves');
 let topMedia = document.getElementById('topMedia');
 const scrollXSpeed = 2;
 let element, medias;
-const lines = 2.8;
+const lines = 5;
 let header = document.querySelector('.header');
 let container = document.querySelector('.container');
 let arrow = document.querySelector('.arrow');
