@@ -7,7 +7,7 @@ const fs = require('fs');
 const { prototype } = require('express-fileupload/lib/uploadtimer');
 const app = express();
 
-app.use(express.json({extended: true, limit: '2048mb'}));
+app.use(express.json({extended: true, limit: config.fileLimit}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
