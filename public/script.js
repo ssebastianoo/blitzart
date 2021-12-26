@@ -37,10 +37,14 @@ window.addEventListener('load', async () => {
         if (["mp4", "mov"].includes(ext)) {
             element = document.createElement('video');
             element.controls = false;
+            element.src = media;
         } else if (["jpg", "jpeg", "png", "gif"].includes(ext)) {
             element = document.createElement('img');
+            element.src = media;
+        } else {
+            element = document.createElement('img');
+            element.src = "not-supported.png";
         }
-        element.src = media;
         element.classList.add('media');
     
         element.addEventListener('click', async(e) => {
