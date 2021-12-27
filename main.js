@@ -5,7 +5,6 @@ const config = require('./config.json');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const e = require('express');
 const app = express();
 
 app.use(express.json({extended: true, limit: config.fileLimit}));
