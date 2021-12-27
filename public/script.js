@@ -2,7 +2,7 @@ let shelves = document.getElementById('shelves');
 let topMedia = document.getElementById('topMedia');
 const scrollXSpeed = 2;
 let element, medias;
-const lines = 5;
+const mediasPerLine = 10;
 let header = document.querySelector('.header');
 let container = document.querySelector('.container');
 let arrow = document.querySelector('.arrow');
@@ -25,7 +25,7 @@ window.addEventListener('load', async () => {
 
     let res = await fetch('/getMedias');
     let medias = await res.json();
-    let imgNumber = 0;
+    let mediaNumber = 0;
     let shelfDiv = document.createElement('div');
     shelfDiv.classList.add('shelf');
     shelves.appendChild(shelfDiv);
@@ -55,9 +55,9 @@ window.addEventListener('load', async () => {
             }
         });
     
-        imgNumber++;
-        if (imgNumber > Math.floor(medias.length/lines)) {
-            imgNumber = 1;
+        mediaNumber++;
+        if (mediaNumber > mediasPerLine) {
+            mediaNumber = 1;
             shelfDiv = document.createElement('div');
             shelfDiv.classList.add('shelf');
             shelves.appendChild(shelfDiv);
