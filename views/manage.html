@@ -24,7 +24,15 @@
             <% medias.forEach(media => { %>
                 <div class="media">
                     <a href="/?media=<%= media.id %>">
-                        <img src="<%= media.url %>" alt="media">
+                        <% if (["mp4", "mov"].includes(media.ext)) { %>
+                            <video class="manage-media" controls>
+                                <source src="<%= media.url %>" type="video/<%= media.ext %>">
+                            </video>
+                        <% } else if (["jpg", "png", "jpeg", "gif"].includes(media.ext)) {%>
+                            <img  class="manage-media" src="<%= media.url %>">     
+                        <% } else { %>
+                            <p><em>formato non supportato per la preview</em></p>
+                        <% } %>
                     </a>
                     <div class="info">
                         <form action="/edit/<%= media.id %>" method="post" enctype='multipart/form-data'>

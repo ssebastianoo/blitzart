@@ -1,10 +1,11 @@
 const fileUpload = require('express-fileupload');
 const sqlite3 = require('sqlite3').verbose();
+const session = require('express-session')
 const config = require('./config.json');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const { prototype } = require('express-fileupload/lib/uploadtimer');
+const e = require('express');
 const app = express();
 
 app.use(express.json({extended: true, limit: config.fileLimit}));
@@ -13,6 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use(fileUpload());
+app.use(session({secret: config.password, resave: false, saveUninitialized: true}));
 
 let db = new sqlite3.Database('db.db', (err) => {if (err) throw err;});
 db.run("CREATE TABLE IF NOT EXISTS medias (id id, title text, author text, description text, class text)")
@@ -59,15 +61,46 @@ app.get('/media/:mediaID', (req, res) => {
     });
 });
 
+app.get('/login', (req, res) => {
+    if (req.query.redirect) {
+        res.render('login', {redirect: req.query.redirect});
+    } else {
+        res.render('login', {redirect: '/'});
+    }
+})
+
+app.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.redirect('/login')
+});
+
+app.post('/login', (req, res) => {
+    if (req.body.username === config.username && req.body.password === config.password) {
+        req.session.auth = true;
+        if (req.query.redirect) {
+            res.redirect(req.query.redirect);
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        res.status(403).send('invalid username or password');
+    }
+});
+
 app.get('/manage', (req, res) => {
-    db.all("SELECT * FROM medias", (err, rows) => {
-        if (err) throw err;
-        rows.forEach(row => {
-            const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === row.id.toString())[0];
-            row.url = path.join('medias', media);
+    if (req.session.auth) {
+        db.all("SELECT * FROM medias", (err, rows) => {
+            if (err) throw err;
+            rows.forEach(row => {
+                const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === row.id.toString())[0];
+                row.url = path.join('medias', media);
+                row.ext = media.split('.').pop().toLowerCase();
+            });
+            res.render('manage', {medias: rows});
         });
-        res.render('manage', {medias: rows});
-    });
+    } else {
+        res.redirect('/login?redirect=manage');
+    }
 });
 
 app.post('/add', (req, res) => {

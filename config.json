@@ -1,4 +1,6 @@
 {
     "port": "4500",
-    "fileLimit": "5120mb"
+    "fileLimit": "5120mb",
+    "username": "admin",
+    "password": "admin"
 }
