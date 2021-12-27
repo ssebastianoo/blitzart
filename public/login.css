@@ -1,0 +1,34 @@
+body {
+    background: #222526;
+}
+
+.login {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+}
+
+.login input:not(:first-child) {
+    margin-top: 20px;
+}
+
+.login input {
+    font-size: 150%;
+    background: none;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.login input:not([type="submit"]):focus {
+    border-bottom-style: solid;
+}
+
+.login input[type="submit"] {
+    cursor: pointer;
+    border: 2px solid white;
+    width: 100%;
+    padding: 5px 5px
+}
