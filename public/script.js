@@ -15,8 +15,6 @@ function nextSection() {
 
 window.addEventListener('load', async () => {
     if (topMedia) {
-        console.log(topMedia.clientHeight)
-        console.log(topMedia.clientWidth)
         if (topMedia.clientWidth >= topMedia.clientHeight) {
             topMedia.classList.add('horizontal');
         } else {
@@ -43,12 +41,18 @@ window.addEventListener('load', async () => {
             element.src = media;
         } else {
             element = document.createElement('img');
-            element.src = "not-supported.png";
+            element.src = "not-supported.png?media=" + media;
         }
         element.classList.add('media');
     
         element.addEventListener('click', async(e) => {
-            location.href = "/?media=" + e.target.src.split('/').pop().split('.')[0];
+            const params = new URLSearchParams(e.target.src.split('?')[1]);
+            if (params.get('media')) {
+                console.log(params.get('media'));
+                location.href = "/?media=" + e.target.src.split('/').pop().split('.')[0];
+            } else {
+                location.href = "/?media=" + e.target.src.split('/').pop().split('.')[0];
+            }
         });
     
         imgNumber++;
