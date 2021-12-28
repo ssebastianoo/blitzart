@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
         db.get("SELECT * FROM medias WHERE id=?", [req.query.media], (err, row) => {
             if (err) throw err;
             if (!media || !row) {
-                res.status(404).send('media not found')
+                res.status(404).render('index', {media: null});
             } else {
                 row.url = path.join('medias', media);
                 row.ext = media.split('.').pop().toLowerCase();

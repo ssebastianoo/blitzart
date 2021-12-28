@@ -13,6 +13,16 @@ function nextSection() {
     document.documentElement.scrollTop = header.clientHeight*(Math.floor(document.documentElement.scrollTop/header.clientHeight) + 1);
 }
 
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
 window.addEventListener('load', async () => {
     if (topMedia) {
         if (topMedia.clientWidth >= topMedia.clientHeight) {
@@ -25,6 +35,7 @@ window.addEventListener('load', async () => {
 
     let res = await fetch('/getMedias');
     let medias = await res.json();
+    shuffle(medias);
     let mediaNumber = 0;
     let shelfDiv = document.createElement('div');
     shelfDiv.classList.add('shelf');
