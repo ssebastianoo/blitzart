@@ -103,6 +103,9 @@ app.get('/manage', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
+    if (!req.session.auth) {
+        return res.status(401).send('unauthorized');
+    }
     if ([req.files.media, req.body.title, req.body.description, req.body.author, req.body.class].includes(undefined)) {
         return res.status(400).send('missing parameters');
     }
@@ -114,6 +117,9 @@ app.post('/add', (req, res) => {
 });
 
 app.post('/edit/:id', (req, res) => {
+    if (!req.session.auth) {
+        return res.status(401).send('unauthorized');
+    }
     const id = req.params.id;
     if ([req.body.title, req.body.description, req.body.author, req.body.class].includes(undefined)) {
         console.log('----')
@@ -126,9 +132,28 @@ app.post('/edit/:id', (req, res) => {
 });
 
 app.get('/delete/:id', (req, res) => {
+    if (!req.session.auth) {
+        return res.status(401).send('unauthorized');
+    }
     const id = req.params.id;
     db.run("DELETE FROM medias WHERE id=?", [id], (err) => {if (err) throw err});
     res.redirect('/manage');
+});
+
+app.use(function(req, res, next){
+    res.status(404);
+
+    res.format({
+        html: function () {
+            res.redirect('/');
+        },
+        json: function () {
+            res.json({ error: 'Not found' })
+        },
+        default: function () {
+            res.type('txt').send('Not found')
+        }
+    })
 });
 
 const port = process.env.PORT || config.port;
