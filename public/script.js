@@ -39,6 +39,10 @@ window.addEventListener('load', async () => {
         } else if (["jpg", "jpeg", "png", "gif"].includes(ext)) {
             element = document.createElement('img');
             element.src = media;
+        } else if (["mp3", "wav", "ogg"].includes(ext)) {
+            element = document.createElement('audio');
+            element.src = media;
+            element.controls = true;
         } else {
             element = document.createElement('img');
             element.src = "not-supported.png?media=" + media;

@@ -29,7 +29,11 @@
                         <source src="<%= media.url %>" type="video/<%= media.ext %>">
                     </video>
                 <% } else if (["jpg", "png", "jpeg", "gif"].includes(media.ext)) {%>
-                    <img src="<%= media.url %>" id="topMedia">     
+                    <img src="<%= media.url %>" id="topMedia">
+                <% } else if (["mp3", "wav", "ogg"].includes(media.ext)) {%>
+                    <audio id="topMedia" controls>
+                        <source src="<%= media.url %>" type="audio/<%= media.ext %>">
+                    </audio> 
                 <% } else { %>
                     <p><a href="<%= media.url %>">scarica</a> <em>formato non supportato per la preview</em></p>
                 <% } %>

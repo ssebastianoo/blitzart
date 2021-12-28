@@ -15,7 +15,7 @@
                 <input type="text" id="description" name="description" placeholder="descrizione" autocomplete="off" required><br>
                 <input type="text" id="author" name="author" placeholder="autore" autocomplete="off" required><br>
                 <input type="text" id="class" name="class" placeholder="classe" required><br>
-                <input type="file" id="file" name="media" required><br>
+                <input type="file" id="file" name="media" accept="image/png,image/jpeg,image/gif,audio/mp3,audio/wav,video/mp4,video/mov" required><br>
                 <input type="submit" id="submit" value="invia" class="submit">
             </form>
         </div>
@@ -29,7 +29,11 @@
                                 <source src="<%= media.url %>" type="video/<%= media.ext %>">
                             </video>
                         <% } else if (["jpg", "png", "jpeg", "gif"].includes(media.ext)) {%>
-                            <img  class="manage-media" src="<%= media.url %>">     
+                            <img class="manage-media" src="<%= media.url %>">     
+                        <% } else if (["mp3", "wav", "ogg"].includes(media.ext)) {%>
+                            <audio class="manage-media" controls>
+                                <source src="<%= media.url %>" type="audio/<%= media.ext %>">
+                            </audio> 
                         <% } else { %>
                             <p><em>formato non supportato per la preview</em></p>
                         <% } %>
