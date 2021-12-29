@@ -10,13 +10,14 @@
     <body>
         <h1>Blitzart 16</h1>
         <div class="add">
-            <form action="/add" method="post" enctype='multipart/form-data'>
+            <form action="/add" method="post" enctype='multipart/form-data' id="form">
                 <input type="text" id="title" name="title" placeholder="titolo" autocomplete="off" required><br>
                 <input type="text" id="description" name="description" placeholder="descrizione" autocomplete="off" required><br>
                 <input type="text" id="author" name="author" placeholder="autore" autocomplete="off" required><br>
                 <input type="text" id="class" name="class" placeholder="classe" required><br>
                 <input type="file" id="file" name="media" accept="image/png,image/jpeg,image/gif,audio/mp3,audio/wav,video/mp4,video/mov" required><br>
                 <input type="submit" id="submit" value="invia" class="submit">
+                <div class="loader" id="loader" style="display:none">Loading...</div>
             </form>
         </div>
         <hr>
@@ -53,5 +54,14 @@
                 </div>
             <% }) %>
         </div>
+        <script type="text/javascript">
+            const form = document.getElementById('form');
+            var loader = document.getElementById('loader');
+            var submit = document.getElementById('submit');
+            form.addEventListener('submit', () => {
+                submit.style.display = 'none';
+                loader.style.display = null;
+            })
+        </script>
     </body>
 </html>

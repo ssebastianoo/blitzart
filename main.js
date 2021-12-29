@@ -158,5 +158,5 @@ app.use(function(req, res, next){
 
 const port = process.env.PORT || config.port;
 app.listen(port, () => {
-    console.log('-> http://localhost:' + port);
+    console.log('-> http://localhost:' + port + '\n-> http://localhost:' + port + '/manage');
 });
