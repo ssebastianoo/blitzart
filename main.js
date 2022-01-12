@@ -1,8 +1,8 @@
 const fileUpload = require('express-fileupload');
-const sqlite3 = require('sqlite3').verbose();
 const session = require('express-session')
 const config = require('./config.json');
 const express = require('express');
+const mysql = require('mysql2');
 const path = require('path');
 const fs = require('fs');
 const app = express();
@@ -15,8 +15,17 @@ app.set('view engine', 'html');
 app.use(fileUpload());
 app.use(session({secret: config.password, resave: false, saveUninitialized: true}));
 
-let db = new sqlite3.Database('db.db', (err) => {if (err) throw err;});
-db.run("CREATE TABLE IF NOT EXISTS medias (id id, title text, author text, description text, class text)")
+const db = mysql.createConnection({
+    host: config.db.host,
+    user: config.db.user,
+    password: config.db.password,
+    database: config.db.database,
+    port: config.db.port || 3306
+})
+
+db.query("CREATE TABLE IF NOT EXISTS medias (id bigint, title text, author text, description text, class text)", (err) => {
+    if (err) throw err;
+})
 
 if (!fs.existsSync(path.join(__dirname, 'public/medias'))) {
     fs.mkdirSync(path.join(__dirname, 'public/medias'));
@@ -25,14 +34,14 @@ if (!fs.existsSync(path.join(__dirname, 'public/medias'))) {
 app.get('/', (req, res) => {
     if (req.query.media) {
         const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === req.query.media)[0];
-        db.get("SELECT * FROM medias WHERE id=?", [req.query.media], (err, row) => {
+        db.query("SELECT * FROM medias WHERE id=?", [req.query.media], (err, results) => {
             if (err) throw err;
-            if (!media || !row) {
+            if (!media || results.length === 0) {
                 res.status(404).render('index', {media: null});
             } else {
-                row.url = path.join('medias', media);
-                row.ext = media.split('.').pop().toLowerCase();
-                res.render('index', {media: row});
+                results[0].url = path.join('medias', media);
+                results[0].ext = media.split('.').pop().toLowerCase();
+                res.render('index', {media: results[0]});
             }
         });
     } else {
@@ -48,14 +57,14 @@ app.get('/getMedias', (req, res) => {
 app.get('/media/:mediaID', (req, res) => {
     const mediaID = req.params.mediaID;
     const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === mediaID)[0];
-    db.get("SELECT * FROM medias WHERE id=?", [mediaID], (err, row) => {
+    db.query("SELECT * FROM medias WHERE id=?", [mediaID], (err, results) => {
         if (err) throw err;
-        if (!media || !row) {
+        if (!media || results.length === 0) {
             res.status(404).send('media not found')
         } else {
-            row.url = path.join('../medias', media);
-            row.ext  = media.split('.').pop();
-            res.send(row);
+            results[0].url = path.join('../medias', media);
+            results[0].ext  = media.split('.').pop();
+            res.send(results[0]);
         }
     });
 });
@@ -88,14 +97,14 @@ app.post('/login', (req, res) => {
 
 app.get('/manage', (req, res) => {
     if (req.session.auth) {
-        db.all("SELECT * FROM medias", (err, rows) => {
+        db.query("SELECT * FROM medias", (err, results) => {
             if (err) throw err;
-            rows.forEach(row => {
+            results.forEach(row => {
                 const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === row.id.toString())[0];
                 row.url = path.join('medias', media);
                 row.ext = media.split('.').pop().toLowerCase();
             });
-            res.render('manage', {medias: rows});
+            res.render('manage', {medias: results});
         });
     } else {
         res.redirect('/login?redirect=manage');
@@ -112,7 +121,7 @@ app.post('/add', (req, res) => {
     const id = Date.now();
     const ext = req.files.media.name.split('.').pop();
     req.files.media.mv(path.join(__dirname, 'public/medias', `${id}.${ext}`), (err) => {if (err) throw err});
-    db.run("INSERT INTO medias (id, author, title, description, class) VALUES (?, ?, ?, ?, ?)", [id, req.body.author, req.body.title, req.body.description, req.body.class], (err) => {if (err) throw err});
+    db.query("INSERT INTO medias (id, author, title, description, class) VALUES (?, ?, ?, ?, ?)", [id, req.body.author, req.body.title, req.body.description, req.body.class], (err) => {if (err) throw err});
     res.redirect('/?media=' + id);
 });
 
@@ -122,12 +131,9 @@ app.post('/edit/:id', (req, res) => {
     }
     const id = req.params.id;
     if ([req.body.title, req.body.description, req.body.author, req.body.class].includes(undefined)) {
-        console.log('----')
-        console.log([req.body.title, req.body.description, req.body.author, req.body.class])
-        console.log(req.body);
         return res.status(400).send('missing parameters');
     }
-    db.run("UPDATE medias SET title=?, description=?, author=?, class=? WHERE id=?", [req.body.title, req.body.description, req.body.author, req.body.class, id], (err) => {if (err) throw err});
+    db.query("UPDATE medias SET title=?, description=?, author=?, class=? WHERE id=?", [req.body.title, req.body.description, req.body.author, req.body.class, id], (err) => {if (err) throw err});
     res.redirect('/manage');
 });
 
@@ -136,7 +142,7 @@ app.get('/delete/:id', (req, res) => {
         return res.status(401).send('unauthorized');
     }
     const id = req.params.id;
-    db.run("DELETE FROM medias WHERE id=?", [id], (err) => {if (err) throw err});
+    db.query("DELETE FROM medias WHERE id=?", [id], (err) => {if (err) throw err});
     res.redirect('/manage');
 });
 

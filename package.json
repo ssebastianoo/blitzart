@@ -28,7 +28,7 @@
     "express": "^4.17.2",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
-    "node-fetch": "^2.6.6",
-    "sqlite3": "^4.2.0"
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.6"
   }
 }
