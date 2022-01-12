@@ -3,3 +3,4 @@ package-lock.json
 public/medias/*
 db.db
 config.json
+.DS_Store
