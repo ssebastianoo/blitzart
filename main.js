@@ -143,6 +143,10 @@ app.get('/delete/:id', (req, res) => {
     }
     const id = req.params.id;
     db.query("DELETE FROM medias WHERE id=?", [id], (err) => {if (err) throw err});
+
+    const media = fs.readdirSync(path.join(__dirname, `public/medias`)).filter(media => media.split('.')[0] === id)[0];
+    fs.unlinkSync(path.join(__dirname, `public/medias`, media));
+
     res.redirect('/manage');
 });
 
