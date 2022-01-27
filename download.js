@@ -1,8 +1,15 @@
 const fetch = require('node-fetch');
-const sqlite = require('sqlite3').verbose();
+const mysql = require('mysql2');
 const fs = require('fs');
+const config = require('./config.json');
 
-const db = new sqlite.Database('db.db');
+const db = mysql.createConnection({
+    host: config.db.host,
+    user: config.db.user,
+    password: config.db.password,
+    database: config.db.database,
+    port: config.db.port || 3306
+})
 
 let medias = [
     "https://images.unsplash.com/photo-1639147591951-07df749c760b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
@@ -33,12 +40,10 @@ let medias = [
     "https://images.unsplash.com/photo-1639242585400-f7029d3eb17c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60"
 ]
 
-db.run("CREATE TABLE IF NOT EXISTS medias (id id, title text, author text, description text, class text)")
-
 medias.forEach(async media => {
     const response = await fetch(media);
     const buffer = await response.buffer();
     const id = Date.now();
     fs.writeFile(`./public/medias/${id}.jpg`, buffer, () => console.log('downloaded ' + media));
-    db.run("INSERT INTO medias (id, title, author, description, class) VALUES (?, 'test', 'test', 'test', 'test')", [id], (err) => {if (err) throw err;});
+    db.query("INSERT INTO medias (id, title, author, description, class) VALUES (?, 'test', 'test', 'test', 'test')", [id], (err) => {if (err) throw err;});
 })
