@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+
+:root {
+  --neon-color: #fffa78;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f9d29d;
+  background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+  background-repeat: no-repeat;
+}
