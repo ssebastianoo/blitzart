@@ -1,0 +1,52 @@
+{
+  "artworks": [
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319569934.jpg"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319570073.jpg"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319570090.jpg"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319569834.jpg"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319570104.jpg"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319570047.jpg"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "title": "test",
+      "author": "Giorgio Casavola",
+      "section": "3O",
+      "image": "https://blitzart.seba.gq/medias/1643319570056.jpg"
+    }
+  ]
+}

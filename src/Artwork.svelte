@@ -6,7 +6,7 @@
 </script>
 
 <div class="artwork">
-    <img src={image} alt={title} />
+  <img src={image} alt={title} />
   <div class="artwork-content">
     <span class="artwork-title">{title}</span>
     <span class="artwork-author">{author}</span>
@@ -20,14 +20,15 @@
     margin: 0.5em;
     display: block;
     background-color: white;
-    cursor: pointer;
-    transition-duration: .2s;
+    transition-duration: 0.2s;
     border: 2px transparent transparent;
+    border-radius: 0.3em;
   }
 
   .artwork:hover {
     border-color: var(--neon-color);
-    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color), 0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
+    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color),
+      0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
   }
 
   .artwork-content {
@@ -38,6 +39,13 @@
   .artwork img {
     width: 15em;
     margin: 0;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    transition: width .3s;
+  }
+
+  .artwork img:hover {
+    width: 20em;
   }
 
   .artwork-content span {
