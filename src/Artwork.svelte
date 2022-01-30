@@ -41,11 +41,6 @@
     margin: 0;
     border-top-left-radius: 0.3em;
     border-top-right-radius: 0.3em;
-    transition: width .3s;
-  }
-
-  .artwork img:hover {
-    width: 20em;
   }
 
   .artwork-content span {
