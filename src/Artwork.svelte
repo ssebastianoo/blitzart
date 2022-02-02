@@ -6,7 +6,10 @@
 </script>
 
 <div class="artwork">
-  <img src={image} alt={title} />
+  <img src={image} alt={title} class="img" />
+  <div class="stamp">
+    <img src="logo.png" alt="Francobollo">
+  </div>
   <div class="artwork-content">
     <span class="artwork-title">{title}</span>
     <span class="artwork-author">{author}</span>
@@ -16,13 +19,14 @@
 
 <style>
   .artwork {
-    box-shadow: 0.5em 0.5em 1em RGBA(0, 0, 0, 0.2);
+    box-shadow: 0.5em 0.5em 1em RGBA(255, 255, 255, 0.2);
     margin: 0.5em;
     display: block;
     background-color: white;
     transition-duration: 0.2s;
     border: 2px transparent transparent;
     border-radius: 0.3em;
+    display: flex;
   }
 
   .artwork:hover {
@@ -33,12 +37,11 @@
 
   .artwork-content {
     padding: 1em;
-    margin: 0;
   }
 
-  .artwork img {
+  .artwork .img {
     width: 15em;
-    margin: 0;
+    padding: .5em;
     border-top-left-radius: 0.3em;
     border-top-right-radius: 0.3em;
   }
@@ -46,6 +49,11 @@
   .artwork-content span {
     display: block;
     border-bottom: 1px solid black;
-    margin: 0.5em 0;
+    margin: 0;
+  }
+
+  .stamp {
+    width: 4em;
+    height: 4em;
   }
 </style>
