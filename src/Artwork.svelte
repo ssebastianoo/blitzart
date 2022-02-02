@@ -7,10 +7,10 @@
 
 <div class="artwork">
   <img src={image} alt={title} class="img" />
-  <div class="stamp">
-    <img src="logo.png" alt="Francobollo">
-  </div>
   <div class="artwork-content">
+    <div class="stamp">
+      <img src="logo.png" alt="Francobollo">
+    </div>
     <span class="artwork-title">{title}</span>
     <span class="artwork-author">{author}</span>
     <span class="artwork-section">{section}</span>
@@ -20,9 +20,11 @@
 <style>
   .artwork {
     box-shadow: 0.5em 0.5em 1em RGBA(255, 255, 255, 0.2);
-    margin: 0.5em;
+    margin: 1em 1em;
     display: block;
-    background-color: white;
+    background-image: url("../paper.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     transition-duration: 0.2s;
     border: 2px transparent transparent;
     border-radius: 0.3em;
@@ -30,9 +32,9 @@
   }
 
   .artwork:hover {
-    border-color: var(--neon-color);
-    box-shadow: 0 0 2rem var(--neon-color), 0 0 0.8rem var(--neon-color),
-      0 0 2.8rem var(--neon-color), inset 0 0 1.3rem var(--neon-color);
+    border-color: var(--cyan);
+    box-shadow: 0 0 2rem var(--cyan), 0 0 0.8rem var(--cyan),
+      0 0 2.8rem var(--cyan), inset 0 0 1.3rem var(--cyan);
   }
 
   .artwork-content {
@@ -40,8 +42,9 @@
   }
 
   .artwork .img {
-    width: 15em;
+    height: 13em;
     padding: .5em;
+    padding-right: 0;
     border-top-left-radius: 0.3em;
     border-top-right-radius: 0.3em;
   }
@@ -53,7 +56,12 @@
   }
 
   .stamp {
-    width: 4em;
-    height: 4em;
+    width: 100%;
+    text-align: right;
+  }
+  .stamp img {
+    width: 3em;
+    border: 2px solid black;
+    padding: 5px;
   }
 </style>

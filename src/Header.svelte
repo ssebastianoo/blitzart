@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
   }
 
   .description-content {
@@ -52,6 +52,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("../paper.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .description-text {
