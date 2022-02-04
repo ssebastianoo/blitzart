@@ -42,7 +42,7 @@
   }
 
   .artwork .img {
-    height: 13em;
+    height: 10em;
     padding: .5em;
     padding-right: 0;
     border-top-left-radius: 0.3em;
@@ -63,5 +63,12 @@
     width: 3em;
     border: 2px solid black;
     padding: 5px;
+  }
+
+  @media only screen and (max-width: 721px) {
+    .artwork .img {
+      height: auto;
+      width: 85%;
+    }
   }
 </style>
