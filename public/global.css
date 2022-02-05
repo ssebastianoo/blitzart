@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 
 :root {
-  --neon-color: #fffa78;
-  --cyan: #028cab;
+  --main-color: #784d3d;
+  --secondary-color: #211815;
 }
 
 html,
@@ -13,5 +13,5 @@ body {
 body {
   font-family: "Inter", sans-serif;
   background-repeat: no-repeat;
-  background-color: black;
+  background-color: var(--secondary-color);
 }

@@ -13,7 +13,7 @@
 
 <style>
     nav {
-        background-color: var(--cyan);
+        background-color: var(--main-color);
         padding: 1em 1em;
         display: flex;
     }
@@ -26,7 +26,7 @@
 
     nav a:hover {
         background-color: white;
-        color: var(--cyan);
+        color: var(--main-color);
         padding: .3em;
         border-radius: .2em;
     }
