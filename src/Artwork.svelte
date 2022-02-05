@@ -8,11 +8,11 @@
 <div class="artwork-container">
   <div class="artwork-parent">
     <div class="artwork">
-      <img src={image} alt={title} class="img" />
+      <img src={image} alt={title} class="img"/>
       <div class="artwork-content">
         <div class="top-images">
           <div class="pin">
-            <img src="pin.webp" alt="pin" />
+            <img src="pin.png" alt="pin" />
           </div>
           <div class="stamp">
             <img src="logo.png" alt="Francobollo" />

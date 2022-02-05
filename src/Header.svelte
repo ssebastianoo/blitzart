@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
 
   .description-content {
