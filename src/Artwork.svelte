@@ -3,11 +3,10 @@
   export let image;
   export let author;
   export let section;
-  const margin = Math.floor(Math.random() * 40) + 1;
 </script>
 
 <div class="artwork-container">
-  <div class="artwork-parent" style="--margin-value: {margin}%">
+  <div class="artwork-parent">
     <div class="artwork">
       <img src={image} alt={title} class="img" />
       <div class="artwork-content">
@@ -34,12 +33,12 @@
   }
 
   .artwork-container:nth-child(odd) .artwork-parent {
-    margin-right: var(--margin-value);
+    margin-right: 10%;
     float: right;
   }
 
   .artwork-container:nth-child(even) .artwork-parent {
-    margin-left: var(--margin-value);
+    margin-left: 10%;
   }
 
   .artwork-parent {

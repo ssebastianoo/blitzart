@@ -30,5 +30,10 @@
     .artworks {
       margin: 2em .5em;
     }
+
+    :global(.artwork-parent) {
+      margin-left: 2% !important;
+      margin-right: 2% !important; 
+    }
   }
 </style>
