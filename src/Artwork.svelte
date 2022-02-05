@@ -27,6 +27,38 @@
 </div>
 
 <style>
+  @keyframes appear-left {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes appear-right {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pin {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   .artwork-container {
     width: 100%;
     overflow: hidden;
@@ -35,10 +67,12 @@
   .artwork-container:nth-child(odd) .artwork-parent {
     margin-right: 10%;
     float: right;
+    animation: appear-right 1s;
   }
 
   .artwork-container:nth-child(even) .artwork-parent {
     margin-left: 10%;
+    animation: appear-left 1s;
   }
 
   .artwork-parent {
@@ -90,6 +124,10 @@
 
   .pin {
     transform: translateY(-1.4em);
+    animation: pin .5s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
   }
 
   .pin img {
