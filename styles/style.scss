@@ -1,0 +1,38 @@
+$textColor : black;
+
+@import 'header';
+
+body {
+    background-image: url('../assets/background.png');
+    background-attachment: fixed;
+    background-size: cover;
+    color: $textColor;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.description {
+    background-image: url('../assets/paper.jpg');
+    background-size: cover;
+    
+    .description-content {
+        display: flex;
+        padding: 20px;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    
+        .text {
+            margin-left: 20px;
+    
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

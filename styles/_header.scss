@@ -1,0 +1,44 @@
+$headerTextColor : white;
+
+header {
+    .logos {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        img {
+            height: 80px;
+        }
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+
+        .nav-item {
+            margin: 20px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            a {
+                color: $headerTextColor;
+                text-decoration: underline;
+                text-transform: uppercase;
+            }
+
+            input {
+                color: $headerTextColor;
+                background: none;
+                border: 5px solid #ffffff;
+                font-family: unset;
+                padding: 5px;
+                outline: none;
+                font-size: unset;
+                text-transform: uppercase;
+            }
+
+        }
+    }
+}
