@@ -3,6 +3,7 @@
     <head>
         <title>Blitzart 15</title>
         <link rel="stylesheet" href="./styles/style.css" />
+        <script src="https://unpkg.com/vue@3"></script>
     </head>
     <body>
         <div class="container">
@@ -57,11 +58,63 @@
                     </div>
                 </div>
             </div>
-            <div class="artworks">
-                <div class="artwork">
-                    
+            <div class="artworks" id="artworks">
+                <div v-for="artwork in artworks" class="artwork-parent">
+                    <div class="artwork">
+                        <div class="image">
+                            <img v-bind:src="artwork.image" alt="Artwork" />
+                        </div>
+                        <div class="content">
+                            <div class="stamp">
+                                <img
+                                    src="https://blitzart15.seba.gq/logo.png"
+                                    alt="stamp"
+                                />
+                            </div>
+                            <div class="text">
+                                <span class="title">{{artwork.title}}</span>
+                                <span class="author">{{artwork.author}}</span>
+                                <span class="class">{{artwork.section}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            const ArtworksManager = {
+                data() {
+                    return {
+                        artworks: [
+                            {
+                                image: "https://blitzart.seba.gq/medias/1643319569934.jpg",
+                                title: "Night City",
+                                author: "Unknow",
+                                section: "30",
+                            },
+                            {
+                                image: "https://blitzart.seba.gq/medias/1643319569934.jpg",
+                                title: "Night City",
+                                author: "Unknow",
+                                section: "30",
+                            },
+                            {
+                                image: "https://blitzart.seba.gq/medias/1643319569934.jpg",
+                                title: "Night City",
+                                author: "Unknow",
+                                section: "30",
+                            },
+                            {
+                                image: "https://blitzart.seba.gq/medias/1643319569934.jpg",
+                                title: "Night City",
+                                author: "Unknow",
+                                section: "30",
+                            },
+                        ],
+                    };
+                },
+            };
+            Vue.createApp(ArtworksManager).mount("#artworks");
+        </script>
     </body>
 </html>

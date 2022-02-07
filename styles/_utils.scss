@@ -1,0 +1,7 @@
+$headerTextColor : white;
+$textColor : black;
+
+@mixin centerflex {
+    display: flex;
+    justify-content: center;
+}

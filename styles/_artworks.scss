@@ -1,0 +1,43 @@
+.artworks {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.artwork-parent {
+    width: 48%;
+    margin: 1%;
+}
+
+.artwork {
+    @include centerflex;
+    background-image: url('../assets/paper.jpg');
+    background-size: cover;
+    padding: 10px;
+    border-radius: 3px;
+
+    .image {
+        img {
+            width: 100%;
+        }
+    }
+
+    .content {
+        .stamp {
+            text-align: right;
+            img {
+                width: 50px;
+                border: 2px solid black;
+            }
+        }
+
+        .text {
+            margin: 0 15px;
+            span {
+                border-bottom: 1px solid black;
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    }
+}
