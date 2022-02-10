@@ -77,6 +77,16 @@ header nav .nav-item input {
   background-size: cover;
   padding: 10px;
   border-radius: 3px;
+  height: 200px;
+}
+
+.artwork .image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .artwork .image img {

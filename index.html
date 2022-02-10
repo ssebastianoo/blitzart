@@ -29,6 +29,7 @@
                     </div>
                     <div class="nav-item">
                         <input
+                            id="search"
                             class="search"
                             type="text"
                             placeholder="cerca..."
@@ -59,6 +60,15 @@
                 </div>
             </div>
             <div class="artworks" id="artworks">
+                <div class="artwork-parent" id="noResults" style="display:none">
+                    <div class="artwork">
+                        <div class="content">
+                            <div class="text">
+                                <span>no results</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div v-for="artwork in artworks" class="artwork-parent">
                     <div class="artwork">
                         <div class="image">
@@ -66,10 +76,7 @@
                         </div>
                         <div class="content">
                             <div class="stamp">
-                                <img
-                                    src="./assets/logo.png"
-                                    alt="stamp"
-                                />
+                                <img src="./assets/logo.png" alt="stamp" />
                             </div>
                             <div class="text">
                                 <span class="title">{{artwork.title}}</span>
@@ -81,6 +88,7 @@
                 </div>
             </div>
         </div>
+        <script src="search.js" type="text/javascript"></script>
         <script type="text/javascript">
             const ArtworksManager = {
                 data() {
@@ -94,7 +102,7 @@
                             },
                             {
                                 image: "https://blitzart.seba.gq/medias/1643319569934.jpg",
-                                title: "Night City",
+                                title: "Test",
                                 author: "Unknow",
                                 section: "30",
                             },
