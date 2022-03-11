@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+header {
+  min-height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header .top .title h1 {
+  font-size: 55px;
+  margin: 0 0 0 20px;
+}
+
+header .top .logo img {
+  width: 70px;
+}
+
+header .description {
+  margin-top: 40px;
+  max-width: 600px;
+}
+
+header .description p {
+  font-size: 20px;
+}
+
+.medias {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  min-height: 50vh;
+}
+
+.medias img {
+  z-index: 999;
+  display: block;
+  margin-left: 20px;
+  -webkit-transition: height .5s;
+  transition: height .5s;
+}
+
+.medias img:not(.active) {
+  height: 30vh;
+}
+
+.medias img:last-child {
+  margin-right: 20px;
+}
+
+.medias .active {
+  height: 40vh;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+/*# sourceMappingURL=global.css.map */
