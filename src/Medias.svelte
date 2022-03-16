@@ -16,7 +16,6 @@
                 const random = Math.floor(Math.random() * mediaEls.length);
                 const media = mediaEls[random];
                 //media.scrollIntoView({behavior: 'smooth', block: 'center'});
-                console.log(media.width);
                 mediaEl.scroll({
                     left:
                         media.offsetLeft -
@@ -27,7 +26,7 @@
                 media.classList.add("active");
                 removeActive = media;
             }
-        }, 1000);
+        }, 5000);
     });
 
     function timeoutScroll() {
@@ -45,10 +44,12 @@
 
 <div class="medias" on:click={timeoutScroll}>
     {#each medias as media}
+    <a href={"/media/" + (media.substring(0, media.lastIndexOf('.')).split('/'))[2]}>
         <img
             src={"https://blitzart.seba.gq/" + media}
             alt="Blitzart"
             class="media-img"
         />
+    </a>
     {/each}
 </div>

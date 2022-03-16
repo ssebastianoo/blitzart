@@ -14,20 +14,8 @@ body {
 }
 
 header {
-  min-height: 50vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  min-height: 40vh;
+  margin-bottom: 2vh;
 }
 
 header .top {
@@ -40,6 +28,7 @@ header .top {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding-top: 20px;
 }
 
 header .top .title h1 {
@@ -52,12 +41,23 @@ header .top .logo img {
 }
 
 header .description {
-  margin-top: 40px;
-  max-width: 600px;
+  margin-top: 20px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 header .description p {
   font-size: 20px;
+  max-width: 600px;
+  margin: 0 20px;
 }
 
 .medias {
@@ -76,8 +76,8 @@ header .description p {
   z-index: 999;
   display: block;
   margin-left: 20px;
-  -webkit-transition: height .5s;
-  transition: height .5s;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
 }
 
 .medias img:not(.active) {
@@ -92,5 +92,53 @@ header .description p {
   height: 40vh;
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
           box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.info {
+  min-height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.info .sections .text {
+  max-height: 15vh;
+}
+
+.info .sections .section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.info .sections .section h1 {
+  margin: 0;
+}
+
+.info .sections .section p {
+  margin: 1vh 0;
+}
+
+.info img {
+  height: 40vh;
+}
+
+@media (max-width: 768px) {
+  .info img {
+    height: 25vh;
+  }
 }
 /*# sourceMappingURL=global.css.map */
